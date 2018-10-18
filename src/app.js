@@ -6,6 +6,8 @@ const app = {
   options: []
 };
 
+const appRoot = document.getElementById('app');
+
 const renderApp = () => {
   const template = (
     <div>
@@ -15,8 +17,11 @@ const renderApp = () => {
       <p>{app.options.length}</p>
       <button onClick={removeAll}>Remove All</button>
       <ol>
-        <li>Item 1</li>
-        <li>Item 2</li>
+      {
+        app.options.map((option) => {
+          return <li key={option}>{option}</li>
+        })
+      }
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type='text' name='option'></input>
@@ -42,8 +47,5 @@ const onFormSubmit = (e) => {
   };
 };
 
-const appRoot = document.getElementById('app');
-
 renderApp();
-
 
