@@ -1,28 +1,32 @@
-let visibility = false;
-
-const appRoot = document.getElementById('app');
-
-const toggleVisibility = () => {
-  visibility = !visibility;
-  renderApp();
+class VisibilityToggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+    this.state = {
+      visibility: false
+    };
+  }
+  handleToggleVisibility() {
+    this.setState((prevState) => {
+      return {
+        visibility: !prevState.visibility
+      };
+    });
+  }
+  render() {
+    return (
+      <div>
+        <h1>Visibility Toggle</h1>
+        <button onClick={this.handleToggleVisibility}>{this.state.visibility ? 'Hide Details' : 'Show Details'}</button>
+        { this.state.visibility && (
+          <div>
+            <p>Hey. These are some details you can now see!</p>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
-const renderApp = () => {
-  const template = (
-    <div>
-      <h1>Visibility Toggle</h1>
-      <button onClick={toggleVisibility}>
-        {visibility ? 'Hide Details' : 'Show Details'}
-      </button>
-      {visibility && (
-        <div>
-          <p>Some details go here</p>
-        </div>
-      )}
-    </div>
-  );
-  ReactDOM.render(template, appRoot);
-};
-
-renderApp();
+ReactDOM.render(<VisibilityToggle></VisibilityToggle>, document.getElementById('app'));
 
