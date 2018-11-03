@@ -22,7 +22,7 @@ import React from 'react';
         {this.state.error && <p>{this.state.error}</p>}
         <form onSubmit={this.handleAddOption}>
           <input type='text' name='option'></input>
-          <button>Add Option</button>
+          <button className='button'>Add Option</button>
         </form>
       </div>
     );
